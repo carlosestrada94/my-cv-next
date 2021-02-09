@@ -2,7 +2,7 @@ export default function Intro() {
   return (
     <div className="section-intro" id={"intro"}>
       <div className="h-screen w-full">
-        <div className="h-full xl:w-3/5 bg-red-500">
+        <div className="h-full xl:w-3/5">
           <img
             src="/pexels-photo-574069.jpeg"
             alt="Me typing on my laptop"
