@@ -1,65 +1,75 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useEffect, useRef } from "react";
+import Head from "next/head";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+//Custom
+import Intro from "../components/Intro";
+import About from "../components/About";
+import Nav from "../components/Nav";
+import Projects from "../components/Projects";
+import Contact from "../components/Contact";
+import { client } from "../sanity";
 
-export default function Home() {
+export default function Home({ projects }) {
+  const indexRef = useRef();
+
+  useEffect(() => {
+    //
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    //
+    const sections = document.querySelectorAll(".section");
+    //
+    sections.forEach((element) => {
+      //
+      const heading = element.querySelectorAll("h1");
+      //
+      const anim = gsap.from(heading, {
+        x: -300,
+        stagger: 0.4,
+        scrollTrigger: {
+          trigger: element,
+          start: "top 50%",
+          end: "top 50%",
+          toggleActions: "play none none reverse",
+          markers: false,
+        },
+      });
+      //
+    });
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <div
+      className="flex flex-col min-h-screen w-screen overflow-x-hidden relative"
+      ref={indexRef}
+    >
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Carlos Estrada</title>
+        <link rel="icon" type={"image/png"} href="/favicon.png" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <Nav />
+      <Intro />
+      <About />
+      <Projects projects={projects} />
+      <Contact />
     </div>
-  )
+  );
+}
+
+export async function getStaticProps() {
+  let projects;
+  try {
+    projects = await client.fetch(
+      "*[ _type == 'project' ] {title, description, url, srccode, 'snap': snapshot.asset->url }"
+    );
+  } catch (e) {
+    console.error(e);
+  }
+
+  return {
+    props: {
+      projects,
+    },
+  };
 }

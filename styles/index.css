@@ -1,0 +1,49 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+.section {
+  @apply w-screen mx-auto max-w-screen-2xl relative;
+  overflow-y: auto;
+}
+
+.section-intro {
+  @apply w-screen mx-auto max-w-screen-2xl relative;
+  overflow-y: auto;
+}
+
+.section-content {
+  @apply p-10 flex sm:justify-center items-center overflow-x-hidden;
+  min-height: 90vh;
+  max-height: fit-content;
+}
+
+.section-title {
+  @apply text-3xl md:text-6xl font-primary pb-5;
+}
+
+.section-subtitle {
+  @apply text-2xl md:text-4xl font-light font-primary text-gray-600 pb-3;
+}
+
+.section-p {
+  @apply text-gray-900 font-secondary md:text-xl lg:text-2xl pb-5 max-w-screen-sm;
+}
+
+.nav-height {
+  height: 10vh;
+}
+
+.space-height {
+  height: 10vh;
+}
+
+.btn {
+  @apply bg-gray-50 px-5 py-3 md:text-xl rounded mx-2.5 shadow-md hover:shadow-lg transition-all cursor-pointer;
+}
+
+.code-p {
+  @apply text-gray-50 font-mono text-sm lg:text-base lg:font-light;
+  word-break: break-word;
+}
