@@ -71,7 +71,7 @@ export default function About() {
             Download my CV
           </a>
         </div>
-        <div className="bg-gray-600 h-56 w-full sm:w-80 md:h-72 md:w-72 lg:h-80 lg:w-80 xl:h-96 xl:w-96 my-5 p-5 mx-auto rounded">
+        <div className="bg-gray-600 h-64 w-full sm:w-80 md:h-72 md:w-72 lg:h-80 lg:w-80 xl:h-96 xl:w-96 my-5 p-5 mx-auto rounded">
           <p id="p-1" className="code-p"></p>
           <p id="p-2" className="code-p"></p>
           <p id="p-3" className="code-p"></p>
