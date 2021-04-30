@@ -3,9 +3,14 @@ body {
   overflow-x: hidden;
 }
 
+.global-container {
+  scroll-snap-type: y mandatory;
+}
+
 .section {
   @apply w-screen mx-auto max-w-screen-2xl relative;
   overflow-y: auto;
+  scroll-snap-align: start;
 }
 
 .section-intro {

@@ -41,7 +41,7 @@ export default function Home({ projects }) {
 
   return (
     <div
-      className="flex flex-col min-h-screen w-screen overflow-x-hidden relative"
+      className="flex flex-col min-h-screen w-screen overflow-x-hidden relative global-container"
       ref={indexRef}
     >
       <Head>
