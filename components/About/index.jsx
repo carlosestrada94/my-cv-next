@@ -9,9 +9,9 @@ export default function About() {
   //
   const code = [
     "function hire(me, yourCompany) {",
-    "let devDept = yourCompany.deptsArr.find((dept) =>",
-    "dept.skills.required === me.skills);",
-    "devDept.employeesArr.push(me);",
+    "const deptInNeed = yourCompany.deptsArr.findIndex(dept =>",
+    "(dept.skillsRequired == me.skills));",
+    "yourCompany.deptsArr[deptInNeed].employeesArr.push(me);",
     "console.log(`${me.name} says Woohoo!`);}",
   ];
   //
